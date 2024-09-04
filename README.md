@@ -26,8 +26,9 @@
 ## Getting Started
 
 1. **Clone the Repository**:
+
    `git clone https://github.com/elirancv/PyQt6ify-Pro`
-   
+
    `cd PyQt6ify-Pro`
 
 2. **Install Dependencies**:

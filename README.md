@@ -2,6 +2,16 @@
 
 **PyQt6ify Pro** is a robust starter kit designed to simplify the development of desktop applications using **PyQt6**. It offers a modular, ready-to-use framework with essential features such as customizable menus, toolbars, status bars, integrated logging, and database support. Whether you're starting a new project or looking for a template to streamline your workflow, PyQt6ify Pro provides the flexibility and structure needed for rapid development.
 
+<div align="left">
+  <img src="./resources/images/screenshot_main.png" alt="Main Screenshot" width="600" />
+</div>
+
+<br/>
+
+<div align="left">
+  <img src="./resources/images/screenshot_about.png" alt="About Screenshot" width="320" />
+</div>
+
 ## Key Features
 - **App Information**:
   - Application name, version, author, and website are centrally managed in `app_config.py`.
@@ -25,11 +35,11 @@
     - Comprehensive logging system with output to both a file (`logs/app.log`) and the console, aiding in debugging and maintenance.
   - **Themes**:
     - PyQt6ify Pro comes with built-in theme management, allowing you to easily switch between different color schemes:
-        - **Dark Theme**: A dark-colored interface designed to reduce eye strain, featuring a deep gray background and bright text. :contentReference[oaicite:0]{index=0}.
-        - **Modern Light Theme**: A clean and bright theme with light gray and white tones for a modern look. :contentReference[oaicite:1]{index=1}.
-        - **Blue Ocean Theme**: A cool, ocean-inspired theme with soft blue tones and contrasting dark text. :contentReference[oaicite:2]{index=2}.
+        - **Dark Theme**: A dark-colored interface designed to reduce eye strain, featuring a deep gray background and bright text.
+        - **Modern Light Theme**: A clean and bright theme with light gray and white tones for a modern look.
+        - **Blue Ocean Theme**: A cool, ocean-inspired theme with soft blue tones and contrasting dark text.
 
-    You can switch themes through the settings menu, or apply them programmatically using the configuration provided in the `resources/styles` folder.
+    You can switch themes through the settings menu or apply them programmatically using the configuration provided in the `resources/styles` folder.
 
 ## Getting Started
 
@@ -51,7 +61,7 @@
 
 ## Configuration
 **Application Settings**:
-Manage app details `(name, version, author, and website)` in app_config.py:
+Manage app details `(name, version, author, and website)` in `app_config.py`:
 - name: Default is `"MyApp"`.
 - version: Default is `"1.0"`.
 - author: `"Your name"`.

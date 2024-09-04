@@ -1,0 +1,10 @@
+{
+    "name": "Blue Ocean Theme",
+    "window_background": "#ADD8E6",  
+    "window_text": "#003366",        
+    "button_background": "#87CEEB", 
+    "button_text": "#003366",        
+    "menu_background": "#B0E0E6",    
+    "menu_text": "#003366",         
+    "highlight_color": "#4682B4"    
+}

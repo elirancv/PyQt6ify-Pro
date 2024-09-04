@@ -1,0 +1,10 @@
+{
+    "name": "Dark Theme",
+    "window_background": "#1E1E1E",
+    "window_text": "#F1F1F1",
+    "button_background": "#3C3C3C",
+    "button_text": "#FFFFFF",
+    "menu_background": "#2B2B2B",
+    "menu_text": "#FFFFFF",
+    "highlight_color": "#1E90FF"
+}

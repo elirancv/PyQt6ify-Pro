@@ -1,0 +1,10 @@
+__pycache__/
+backups/
+logs/
+docs/
+tests/
+config.ini
+*.pyc
+*.rar
+*.zip
+*.db

@@ -1,18 +1,6 @@
-"""
+## PyQt6ify Pro
+
 **PyQt6ify Pro** is a robust starter kit designed to simplify the development of desktop applications using **PyQt6**. It offers a modular, ready-to-use framework with essential features such as customizable menus, toolbars, status bars, integrated logging, and database support. Whether you're starting a new project or looking for a template to streamline your workflow, PyQt6ify Pro provides the flexibility and structure needed for rapid development.
-
-
-<div align="left">
-  <img src="./resources/images/screenshot_main.png" alt="Main Screenshot" width="600" />
-</div>
-
-<br/>
-
-<div align="left">
-  <img src="./resources/images/screenshot_about.png" alt="About Screenshot" width="320" />
-</div>
-
-
 
 ## Key Features
 - **App Information**:
@@ -35,6 +23,13 @@
     - Integrated SQLite database for persistent data storage and management.
   - **Logging**:
     - Comprehensive logging system with output to both a file (`logs/app.log`) and the console, aiding in debugging and maintenance.
+  - **Themes**:
+    - PyQt6ify Pro comes with built-in theme management, allowing you to easily switch between different color schemes:
+        - **Dark Theme**: A dark-colored interface designed to reduce eye strain, featuring a deep gray background and bright text. :contentReference[oaicite:0]{index=0}.
+        - **Modern Light Theme**: A clean and bright theme with light gray and white tones for a modern look. :contentReference[oaicite:1]{index=1}.
+        - **Blue Ocean Theme**: A cool, ocean-inspired theme with soft blue tones and contrasting dark text. :contentReference[oaicite:2]{index=2}.
+
+    You can switch themes through the settings menu, or apply them programmatically using the configuration provided in the `resources/styles` folder.
 
 ## Getting Started
 
@@ -50,11 +45,9 @@
      OR
     `pip install PyQt6==6.7.1 PyQt6-Qt6==6.7.2 PyQt6_sip==13.8.0`
 
-
 3. **Run the Application**:
 
     `python main.py`
-
 
 ## Configuration
 **Application Settings**:
@@ -63,13 +56,13 @@ Manage app details `(name, version, author, and website)` in app_config.py:
 - version: Default is `"1.0"`.
 - author: `"Your name"`.
 - website: `"Your website URL"`.
-- Window Settings `(in config.ini)`:
 
-- start_maximized: Start the app maximized `(True/False)`.
-- screen_width: `Default window width`.
-- screen_height: `Default window height`.
-- Module Control `(in app_config.py)`:
+**Window Settings** (in `config.ini`):
+- `start_maximized`: Start the app maximized `(True/False)`.
+- `screen_width`: Default window width.
+- `screen_height`: Default window height.
 
+**Module Control** (in `app_config.py`):
 - Enable or disable specific modules `(logging, database, menu, toolbar, status bar)` as needed for **your application**.
 
 ## Contributing
@@ -83,6 +76,7 @@ We welcome contributions to PyQt6ify Pro! Whether you're fixing bugs, adding new
 4. **Push to your branch**:  
    `git push origin feature-branch`
 5. **Submit a pull request** to the main repository for review.
+
 We’ll review your pull request and merge it when it’s ready.
 
 ## License
@@ -90,4 +84,4 @@ This project is licensed under the MIT License. You're free to use PyQt6ify Pro 
 
 ## Version
 
-`v1.0.0 b002 (2024-09-05)` """
+`v1.0.0 b002 (2024-09-05)`

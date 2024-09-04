@@ -26,23 +26,23 @@
 ## Getting Started
 
 1. **Clone the Repository**:
-   git clone https://github.com/elirancv/PyQt6ify-Pro
-   cd PyQt6ify-Pro
+   **git clone https://github.com/elirancv/PyQt6ify-Pro**
+   **cd PyQt6ify-Pro**
 
 2. **Install Dependencies**:
-pip install -r requirements.txt
+**pip install -r requirements.txt**
 
 3. **Run the Application**:
-python main.py
+**python main.py**
 
 ## Configuration
 **Application Settings**:
 Manage app details (name, version, author, and website) in app_config.py:
-- name: Default is "MyApp".
-- version: Default is "1.0".
-- author: Your name.
-- website: Your website URL.
-- Window Settings (in config.ini):
+- name: Default is **"MyApp"**.
+- version: Default is **"1.0"**.
+- author: **Your name**.
+- website: **Your website URL**.
+- Window Settings **(in config.ini)**:
 
 - start_maximized: Start the app maximized (True/False).
 - screen_width: Default window width.

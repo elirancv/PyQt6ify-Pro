@@ -8,5 +8,3 @@ config.ini
 *.rar
 *.zip
 *.db
-*.gitignore
-*.gitattributes

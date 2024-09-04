@@ -5,7 +5,7 @@ import time
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtGui import QIcon
 from config.app_config import Config
-from modules import error_handling, database, menu, status_bar, toolbar, about  # Correct imports
+from modules import error_handling, database, menu, status_bar, toolbar, about
 
 # Ensure the logs directory exists
 if not os.path.exists('logs'):

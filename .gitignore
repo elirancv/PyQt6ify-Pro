@@ -4,6 +4,7 @@ logs/
 docs/
 tests/
 config.ini
+.venv
 *.pyc
 *.rar
 *.zip

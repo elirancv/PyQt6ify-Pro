@@ -1,6 +1,13 @@
 """
 **PyQt6ify Pro** is a robust starter kit designed to simplify the development of desktop applications using **PyQt6**. It offers a modular, ready-to-use framework with essential features such as customizable menus, toolbars, status bars, integrated logging, and database support. Whether you're starting a new project or looking for a template to streamline your workflow, PyQt6ify Pro provides the flexibility and structure needed for rapid development.
 
+
+![Screenshot](./resources/images/screenshot_main.png)
+
+
+![Screenshot](./resources/images/screenshot_about.png)
+
+
 ## Key Features
 - **App Information**:
   - Application name, version, author, and website are centrally managed in `app_config.py`.

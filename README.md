@@ -45,7 +45,7 @@
 
 ## Configuration
 **Application Settings**:
-Manage app details (**name, version, author, and website**) in **app_config.py**:
+Manage app details (**name, version, author, and website**) in app_config.py:
 - name: Default is **"MyApp"**.
 - version: Default is **"1.0"**.
 - author: **Your name**.

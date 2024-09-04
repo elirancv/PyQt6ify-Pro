@@ -8,7 +8,7 @@
 
 <br/>
 
-<div align="center">
+<div align="left">
   <img src="./resources/images/screenshot_about.png" alt="About Screenshot" width="320" />
 </div>
 

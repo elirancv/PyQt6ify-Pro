@@ -26,7 +26,7 @@
   - **Menu**:
     - Pre-built menus `(File, Edit, Help)` with common actions like New, Open, Save, and About.
   - **Toolbar**:
-    - Icons for key file operations `(New, Open, Save)` and editing actions (Undo, Redo, Cut, Copy, Paste).
+    - Icons for key file operations `(New, Open, Save)` and editing actions `(Undo, Redo, Cut, Copy, Paste)`.
   - **Status Bar**:
     - Displays both temporary and permanent messages, providing real-time status updates during user interactions.
   - **Database**:

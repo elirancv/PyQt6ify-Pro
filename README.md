@@ -42,7 +42,7 @@
 
 ## Configuration
 **Application Settings**:
-Manage app details (name, version, author, and website) in app_config.py:
+Manage app details (**name, version, author, and website**) in **app_config.py**:
 - name: Default is **"MyApp"**.
 - version: Default is **"1.0"**.
 - author: **Your name**.
@@ -54,7 +54,7 @@ Manage app details (name, version, author, and website) in app_config.py:
 - screen_height: **Default window height**.
 - Module Control **(in app_config.py)**:
 
-- Enable or disable specific modules (logging, database, menu, toolbar, status bar) as needed for your application.
+- Enable or disable specific modules (**logging, database, menu, toolbar, status bar**) as needed for **your application**.
 
 ## Contributing
 We welcome contributions to PyQt6ify Pro! Whether you're fixing bugs, adding new features, or improving documentation, your help is appreciated. To contribute:
@@ -72,5 +72,6 @@ We’ll review your pull request and merge it when it’s ready.
 ## License
 This project is licensed under the MIT License. You're free to use PyQt6ify Pro as a starting point for your own PyQt6 projects.
 
-Version
-v1.0.0 b002 (2024-09-05) """
+## Version
+
+`v1.0.0 b002 (2024-09-05)` """

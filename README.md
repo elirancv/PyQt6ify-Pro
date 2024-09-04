@@ -1,67 +1,71 @@
 """
-## PyQt6ify Pro
+**PyQt6ify Pro** is a robust starter kit designed to simplify the development of desktop applications using **PyQt6**. It offers a modular, ready-to-use framework with essential features such as customizable menus, toolbars, status bars, integrated logging, and database support. Whether you're starting a new project or looking for a template to streamline your workflow, PyQt6ify Pro provides the flexibility and structure needed for rapid development.
 
-**PyQt6ify Pro** is a template designed to streamline the creation of new applications using **PyQt6**. It provides a ready-to-use framework that includes a modular design for menus, toolbars, status bars, logging, and database integration. The project combines ease of setup with flexibility, making it a perfect starting point for developing PyQt6 applications.
-
-## Features
-
+## Key Features
 - **App Information**:
-  - Application name, version, author, and website are hardcoded in `app_config.py`.
-  - Easily update these settings within the Python file for consistent use across the application.
+  - Application name, version, author, and website are centrally managed in `app_config.py`.
+  - Easily customizable settings for consistent use across your application.
 
 - **Window Settings**:
-  - Configurable window settings via `config.ini`, including:
-    - `start_maximized`: Whether the app starts maximized.
-    - `screen_width` & `screen_height`: Default dimensions of the application window.
+  - Controlled via `config.ini`:
+    - `start_maximized`: Option to start the application maximized.
+    - `screen_width` & `screen_height`: Default dimensions for the application window.
 
 - **Modular Components**:
   - **Menu**:
-    - Pre-configured File, Edit, and Help menus with core actions like New, Open, Save, and About.
+    - Pre-built menus (File, Edit, Help) with common actions like New, Open, Save, and About.
   - **Toolbar**:
-    - Icons for File operations (New, Open, Save) and Edit actions (Undo, Redo, Cut, Copy, Paste).
+    - Icons for key file operations (New, Open, Save) and editing actions (Undo, Redo, Cut, Copy, Paste).
   - **Status Bar**:
-    - Provides temporary and permanent messages for user feedback, including real-time status updates for actions.
+    - Displays both temporary and permanent messages, providing real-time status updates during user interactions.
   - **Database**:
-    - Integrated SQLite database setup for persistent storage and application data management.
+    - Integrated SQLite database for persistent data storage and management.
   - **Logging**:
-    - Logs both to a file (`logs/app.log`) and the console. Logs key application actions and errors for easier debugging and maintenance.
+    - Comprehensive logging system with output to both a file (`logs/app.log`) and the console, aiding in debugging and maintenance.
 
 ## Getting Started
 
-1. **Clone the repository**:
+1. **Clone the Repository**:
    git clone https://github.com/elirancv/PyQt6ify-Pro
    cd PyQt6ify-Pro
 
-2.	Install the requirements: Install the dependencies specified in requirements.txt:
+2. **Install Dependencies**:
 pip install -r requirements.txt
 
-3.	Run the application: Launch the PyQt6 application by executing main.py:
+3. **Run the Application**:
 python main.py
-Configuration
-•	Application Settings:
-o	App Information is hardcoded in app_config.py and includes:
-	name: Application name (default: "MyApp").
-	version: Application version (default: "1.0").
-	author: The author of the application.
-	website: The official website link for the application.
-•	Window Settings:
-o	Controlled through config.ini:
-	start_maximized: Start the application maximized (True or False).
-	screen_width: Default window width.
-	screen_height: Default window height.
-•	Modules:
-o	Enable or disable modules such as logging, database, menu, toolbar, and status_bar in app_config.py.
 
-## How to Contribute
-Contributions are welcome! If you have ideas or improvements, feel free to:
+## Configuration
+**Application Settings**:
+Manage app details (name, version, author, and website) in app_config.py:
+- name: Default is "MyApp".
+- version: Default is "1.0".
+- author: Your name.
+- website: Your website URL.
+- Window Settings (in config.ini):
 
-1.	Fork the repository.
-2.	Create a new branch (git checkout -b feature-branch).
-3.	Commit your changes (git commit -m 'Add a new feature').
-4.	Push to your branch (git push origin feature-branch).
-5.	Create a pull request.
+- start_maximized: Start the app maximized (True/False).
+- screen_width: Default window width.
+- screen_height: Default window height.
+- Module Control (in app_config.py):
+
+- Enable or disable specific modules (logging, database, menu, toolbar, status bar) as needed for your application.
+
+## Contributing
+We welcome contributions to PyQt6ify Pro! Whether you're fixing bugs, adding new features, or improving documentation, your help is appreciated. To contribute:
+
+1. **Fork the repository** to create your own copy.
+2. **Create a new branch** for your changes:  
+   `git checkout -b feature-branch`
+3. **Commit your changes**:  
+   `git commit -m "Add a new feature"`
+4. **Push to your branch**:  
+   `git push origin feature-branch`
+5. **Submit a pull request** to the main repository for review.
+We’ll review your pull request and merge it when it’s ready.
 
 ## License
-This project is licensed under the MIT License. Feel free to use it as a starting point for your own PyQt6 projects.
+This project is licensed under the MIT License. You're free to use PyQt6ify Pro as a starting point for your own PyQt6 projects.
+
 Version
-v1.0.0 b001 (2024-09-04) """
+v1.0.0 b002 (2024-09-05) """

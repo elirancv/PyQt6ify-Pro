@@ -9,7 +9,7 @@
 <br/>
 
 <div align="center">
-  <img src="./resources/images/screenshot_about.png" alt="About Screenshot" width="350" />
+  <img src="./resources/images/screenshot_about.png" alt="About Screenshot" width="320" />
 </div>
 
 

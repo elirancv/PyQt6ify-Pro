@@ -60,17 +60,17 @@
 **Application Settings**:
 Manage app details `(name, version, author, and website)` in app_config.py:
 - name: Default is `"MyApp"`.
-- version: Default is **"1.0"**.
-- author: **Your name**.
-- website: **Your website URL**.
-- Window Settings **(in config.ini)**:
+- version: Default is `"1.0"`.
+- author: `"Your name"`.
+- website: `Your website URL`.
+- Window Settings `(in config.ini)`:
 
-- start_maximized: Start the app maximized **(True/False)**.
-- screen_width: **Default window width**.
-- screen_height: **Default window height**.
-- Module Control **(in app_config.py)**:
+- start_maximized: Start the app maximized `(True/False)`.
+- screen_width: `Default window width`.
+- screen_height: `Default window height`.
+- Module Control `(in app_config.py)`:
 
-- Enable or disable specific modules (**logging, database, menu, toolbar, status bar**) as needed for **your application**.
+- Enable or disable specific modules `(logging, database, menu, toolbar, status bar)` as needed for **your application**.
 
 ## Contributing
 We welcome contributions to PyQt6ify Pro! Whether you're fixing bugs, adding new features, or improving documentation, your help is appreciated. To contribute:

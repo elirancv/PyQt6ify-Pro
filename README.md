@@ -27,17 +27,18 @@
 
 1. **Clone the Repository**:
 
-  `git clone https://github.com/elirancv/PyQt6ify-Pro`
+    `git clone https://github.com/elirancv/PyQt6ify-Pro`
 
-  `cd PyQt6ify-Pro`
+    `cd PyQt6ify-Pro`
 
 2. **Install Dependencies**:
 
-  `pip install -r requirements.txt`
+    `pip install -r requirements.txt`
 
 3. **Run the Application**:
-  `python main.py`
-  
+
+    `python main.py`
+
 
 ## Configuration
 **Application Settings**:

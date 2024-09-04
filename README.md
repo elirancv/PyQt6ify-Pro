@@ -32,9 +32,11 @@
    `cd PyQt6ify-Pro`
 
 2. **Install Dependencies**:
+
 `pip install -r requirements.txt`
 
 3. **Run the Application**:
+
 `python main.py`
 
 ## Configuration

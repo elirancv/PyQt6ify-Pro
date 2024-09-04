@@ -34,10 +34,9 @@
 2. **Install Dependencies**:
 
     `pip install -r requirements.txt`
-    
-    `PyQt6==6.7.1`
-    `PyQt6-Qt6==6.7.2`
-    `PyQt6_sip==13.8.0`
+     or
+    `pip install PyQt6==6.7.1 PyQt6-Qt6==6.7.2 PyQt6_sip==13.8.0`
+
 
 3. **Run the Application**:
 

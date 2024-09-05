@@ -35,6 +35,8 @@
     - Supports log rotation, file size limits, backup counts, and multiple log levels (DEBUG, INFO, WARNING, ERROR, CRITICAL).
     - Output to both a log file (`logs/app.log`) and console.
 
+
+
 ## Getting Started
 
 1. **Clone the Repository**:

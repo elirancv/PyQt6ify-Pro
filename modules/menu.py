@@ -94,7 +94,7 @@ def create_menu(window, config):
             theme_group.addAction(theme_action)
             
             # Connect each theme action to apply the selected theme, fixing lambda scope issue
-            theme_action.triggered.connect(lambda checked, t=os.path.join(styles_path, theme_file), name=theme_name: apply_selected_theme(window, t, theme_action, name))
+            theme_action.triggered.connect(lambda checked, t=os.path.join(styles_path, theme_file), name=theme_name, action=theme_action: apply_selected_theme(window, t, action, name))
             
             # Add the action to the menu
             theme_menu.addAction(theme_action)

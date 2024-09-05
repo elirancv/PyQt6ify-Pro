@@ -1,9 +1,9 @@
 import os
-from PyQt6.QtWidgets import QMenuBar, QMainWindow
+from PyQt6.QtWidgets import QMenuBar
 from PyQt6.QtGui import QIcon, QAction, QActionGroup
 import logging
 from modules import status_bar, about, themes
-
+from config.settings_dialog import SettingsDialog  # Ensure the SettingsDialog is correctly imported
 
 def update_status_bar(status_bar, message):
     """
@@ -17,7 +17,6 @@ def update_status_bar(status_bar, message):
         logging.info(f"Status bar updated: {message}")
     else:
         logging.warning("Failed to update status bar: Status bar not initialized.")
-
 
 def create_menu(window, config):
     """
@@ -35,11 +34,12 @@ def create_menu(window, config):
 
         menubar = QMenuBar(window)
         
-        # File menu setup
+        # ------------------- File Menu -------------------
         file_menu = menubar.addMenu('File')
         new_action = QAction(QIcon(f'{icons_path}/new.png'), 'New', window)
         open_action = QAction(QIcon(f'{icons_path}/open.png'), 'Open', window)
         save_action = QAction(QIcon(f'{icons_path}/save.png'), 'Save', window)
+        print_action = QAction(QIcon(f'{icons_path}/print.png'), 'Print', window)
         exit_action = QAction(QIcon(f'{icons_path}/exit.png'), 'Exit', window)
         exit_action.triggered.connect(window.close)
         
@@ -47,27 +47,36 @@ def create_menu(window, config):
         file_menu.addAction(open_action)
         file_menu.addAction(save_action)
         file_menu.addSeparator()
+        file_menu.addAction(print_action)
+        file_menu.addSeparator()
         file_menu.addAction(exit_action)
         
-        # Edit menu setup
+        # ------------------- Edit Menu -------------------
         edit_menu = menubar.addMenu('Edit')
         undo_action = QAction(QIcon(f'{icons_path}/undo.png'), 'Undo', window)
         redo_action = QAction(QIcon(f'{icons_path}/redo.png'), 'Redo', window)
         cut_action = QAction(QIcon(f'{icons_path}/cut.png'), 'Cut', window)
         copy_action = QAction(QIcon(f'{icons_path}/copy.png'), 'Copy', window)
         paste_action = QAction(QIcon(f'{icons_path}/paste.png'), 'Paste', window)
-        
+        select_all_action = QAction('Select All', window)
+
         edit_menu.addAction(undo_action)
         edit_menu.addAction(redo_action)
         edit_menu.addSeparator()
         edit_menu.addAction(cut_action)
         edit_menu.addAction(copy_action)
         edit_menu.addAction(paste_action)
+        edit_menu.addAction(select_all_action)
         
-        # Settings menu setup (with Dynamic Themes)
+        # ------------------- Settings Menu -------------------
         settings_menu = menubar.addMenu(QIcon(f'{icons_path}/settings.png'), 'Settings')
         
-        # Create a sub-menu for Themes with an icon
+        # App Settings (to open Settings Dialog)
+        app_settings_action = QAction(QIcon(f'{icons_path}/defaults.png'), 'Config Defaults', window)
+        app_settings_action.triggered.connect(lambda: open_settings_dialog(window))
+        settings_menu.addAction(app_settings_action)
+        
+        # Theme submenu
         theme_menu = settings_menu.addMenu(QIcon(f'{icons_path}/themes.png'), 'Themes')
 
         # Create a QActionGroup for exclusive selection of themes
@@ -102,31 +111,34 @@ def create_menu(window, config):
             # Mark the theme as selected if it matches the current theme
             if theme_name == selected_theme:
                 theme_action.setChecked(True)
-        
-        # Help menu setup
+
+        # ------------------- Help Menu -------------------
         help_menu = menubar.addMenu('Help')
         about_action = QAction(QIcon(f'{icons_path}/about.png'), 'About', window)
-        about_action.triggered.connect(lambda: about.show_about_dialog(window, config))
         help_menu.addAction(about_action)
         
+        # Connect to the About dialog
+        about_action.triggered.connect(lambda: about.show_about_dialog(window, config))
+
         # Set the menubar in the window
         window.setMenuBar(menubar)
-        logging.info("Menu created successfully.")
+        logging.info("Full menu created successfully.")
         
         # Connect actions to update the status bar
         connect_menu_actions(new_action, "New file created", window)
         connect_menu_actions(open_action, "File opened", window)
         connect_menu_actions(save_action, "File saved", window)
+        connect_menu_actions(print_action, "Printing file", window)
         connect_menu_actions(undo_action, "Undo action", window)
         connect_menu_actions(redo_action, "Redo action", window)
         connect_menu_actions(cut_action, "Cut action", window)
         connect_menu_actions(copy_action, "Copy action", window)
         connect_menu_actions(paste_action, "Paste action", window)
+        connect_menu_actions(select_all_action, "Selected all", window)
         connect_menu_actions(about_action, "Opened About dialog", window)
 
     except Exception as e:
         logging.error(f"Failed to create menu: {e}", exc_info=True)
-
 
 def apply_selected_theme(window, theme_file, theme_action, theme_name):
     """
@@ -151,7 +163,6 @@ def apply_selected_theme(window, theme_file, theme_action, theme_name):
     except Exception as e:
         logging.error(f"Failed to apply theme: {e}", exc_info=True)
 
-
 def connect_menu_actions(action, message, window):
     """
     Connects a menu action to update the status bar with a specific message.
@@ -164,3 +175,10 @@ def connect_menu_actions(action, message, window):
         action.triggered.connect(lambda: update_status_bar(window.statusBar(), message))
     except Exception as e:
         logging.error(f"Failed to connect action '{action.text()}': {e}", exc_info=True)
+
+def open_settings_dialog(window):
+    """
+    Opens the SettingsDialog window to allow the user to modify application settings.
+    """
+    settings_dialog = SettingsDialog(window)
+    settings_dialog.exec()

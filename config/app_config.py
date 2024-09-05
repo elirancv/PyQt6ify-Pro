@@ -2,6 +2,11 @@ import configparser
 import os
 import logging
 from modules.error_handling import setup_logging
+from config.settings_dialog import SettingsDialog  
+
+
+# Import settings from the config folder
+import config.settings as app_settings
 
 class Config:
     def __init__(self, config_file='config/config.ini'):
@@ -13,23 +18,9 @@ class Config:
         self.config_file = config_file
         self.config = configparser.ConfigParser()
 
-        # About details and module settings are controlled from app_config.py (not written to ini)
-        self.about_info = {
-            'name': 'PyQt6ify Pro',
-            'version': '1.0',
-            'author': 'Your Name',
-            'website': 'https://www.yourwebsite.com',
-            'icon': 'resources/icons/app_icon.png'
-        }
-
-        # Default module settings controlled directly in app_config.py
-        self.modules = {
-            'logging': True,
-            'database': True,
-            'menu': True,
-            'toolbar': True,
-            'status_bar': True
-        }
+        # Load About and Module info from settings.py in the config folder
+        self.about_info = app_settings.about_info
+        self.modules = app_settings.modules
 
         # Ensure the config directory exists
         config_dir = os.path.dirname(self.config_file)
@@ -45,11 +36,11 @@ class Config:
 
         # Setup logging after loading config
         if self.is_module_enabled('logging'):
-            log_file = self.get_logging_setting('log_file', 'logs/app.log')
-            max_bytes = int(self.get_logging_setting('max_bytes', 5 * 1024 * 1024))  # 5MB by default
-            backup_count = int(self.get_logging_setting('backup_count', 3))
-            logging_level = self.get_logging_setting('level', 'INFO').upper()
-            
+            log_file = self.get_logging_setting('log_file', app_settings.logging_defaults['log_file'])
+            max_bytes = int(self.get_logging_setting('max_bytes', app_settings.logging_defaults['max_bytes']))  # Default 5MB
+            backup_count = int(self.get_logging_setting('backup_count', app_settings.logging_defaults['backup_count']))
+            logging_level = self.get_logging_setting('level', app_settings.logging_defaults['level']).upper()
+
             # Setup logging with the loaded configuration
             setup_logging(log_file=log_file, max_bytes=max_bytes, backup_count=backup_count)
 
@@ -68,17 +59,8 @@ class Config:
         Create a default configuration file for APP settings if it does not exist or is invalid.
         """
         try:
-            self.config['APP'] = {
-                'start_maximized': 'True',
-                'screen_width': '800',
-                'screen_height': '600'
-            }
-            self.config['LOGGING'] = {
-                'log_file': 'logs/app.log',
-                'max_bytes': '5242880',  # 5MB
-                'backup_count': '3',
-                'level': 'INFO'
-            }
+            self.config['APP'] = app_settings.app_defaults
+            self.config['LOGGING'] = app_settings.logging_defaults
             with open(self.config_file, 'w') as configfile:
                 self.config.write(configfile)
             logging.info(f"Default config created at: {self.config_file}")
@@ -116,7 +98,7 @@ class Config:
 
     def is_module_enabled(self, module):
         """
-        Check if a module is enabled based on app_config.py settings.
+        Check if a module is enabled based on settings.
         
         :param module: The module to check (e.g., logging, database).
         :return: True if the module is enabled, False otherwise.

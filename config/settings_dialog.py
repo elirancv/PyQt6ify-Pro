@@ -10,7 +10,7 @@ from PIL import Image  # Ensure Pillow is installed: pip install pillow
 class SettingsDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowTitle("Application Settings")
+        self.setWindowTitle("Default App Settings")
 
         # Initialize the fields dictionary
         self.fields = {}

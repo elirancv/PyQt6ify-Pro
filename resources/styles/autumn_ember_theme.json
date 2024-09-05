@@ -1,0 +1,10 @@
+{
+    "name": "Autumn Ember",
+    "window_background": "#343131",  
+    "window_text": "#EEDF7A",        
+    "button_background": "#A04747", 
+    "button_text": "#EEDF7A",        
+    "menu_background": "#D8A25E",    
+    "menu_text": "#343131",         
+    "highlight_color": "#EEDF7A"    
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Rustic Charm",
+    "window_background": "#2C3639",  
+    "window_text": "#DCD7C9",        
+    "button_background": "#3F4E4F", 
+    "button_text": "#DCD7C9",        
+    "menu_background": "#A27B5C",    
+    "menu_text": "#DCD7C9",         
+    "highlight_color": "#2C3639"    
+}

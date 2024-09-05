@@ -1,0 +1,10 @@
+{
+    "name": "Coral Wave",
+    "window_background": "#364F6B",  
+    "window_text": "#F5F5F5",        
+    "button_background": "#3FC1C9", 
+    "button_text": "#F5F5F5",        
+    "menu_background": "#3FC1C9",    
+    "menu_text": "#F5F5F5",         
+    "highlight_color": "#FC5185"    
+}

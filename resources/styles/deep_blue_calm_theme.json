@@ -1,0 +1,10 @@
+{
+    "name": "Deep Blue Calm",
+    "window_background": "#F9F7F7",  
+    "window_text": "#112D4E",        
+    "button_background": "#DBE2EF", 
+    "button_text": "#112D4E",        
+    "menu_background": "#DBE2EF",    
+    "menu_text": "#112D4E",         
+    "highlight_color": "#3F72AF"    
+}

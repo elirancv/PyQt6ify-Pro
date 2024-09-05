@@ -1,0 +1,10 @@
+{
+    "name": "Crimson Night",
+    "window_background": "#2B2E4A",  
+    "window_text": "#E84545",        
+    "button_background": "#903749", 
+    "button_text": "#E84545",        
+    "menu_background": "#53354A",    
+    "menu_text": "#E84545",         
+    "highlight_color": "#E84545"    
+}

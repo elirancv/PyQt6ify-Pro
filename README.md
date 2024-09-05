@@ -46,6 +46,7 @@
     You can switch themes through the settings menu or apply them programmatically using the configuration provided in the `resources/styles` folder.
 
 
+
 ## Getting Started
 
 1. **Clone the Repository**:
@@ -64,6 +65,8 @@
 
     `python main.py`
 
+
+
 ## Configuration
 **Application Settings**:
 Manage app details `(name, version, author, and website)` in `app_config.py`:
@@ -80,12 +83,14 @@ Manage app details `(name, version, author, and website)` in `app_config.py`:
 **Module Control** (in `app_config.py`):
 - Enable or disable specific modules `(logging, database, menu, toolbar, status bar)` as needed for **your application**.
 
+
 ## Logging Configuration
 **Logging Settings** (in `config.ini`):
 - `log_file`: Path to the log file (`logs/app.log` by default).
 - `max_bytes`: Maximum size of the log file before rotation (default: `5MB`).
 - `backup_count`: Number of backup log files to keep (default: `3`).
 - `level`: Logging level (default: `INFO`, supports `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`).
+
 
 
 ## Contributing
@@ -102,8 +107,10 @@ We welcome contributions to PyQt6ify Pro! Whether you're fixing bugs, adding new
 
 We’ll review your pull request and merge it when it’s ready.
 
+
 ## License
 This project is licensed under the MIT License. You're free to use PyQt6ify Pro as a starting point for your own PyQt6 projects.
+
 
 ## Version
 

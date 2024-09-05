@@ -1,6 +1,7 @@
 import configparser
 import os
 import logging
+from modules.error_handling import setup_logging
 
 class Config:
     def __init__(self, config_file='config/config.ini'):
@@ -36,11 +37,21 @@ class Config:
             os.makedirs(config_dir)
             logging.info(f"Created config directory: {config_dir}")
 
-        # Load the config.ini file for APP settings (start_maximized, screen_width, screen_height)
+        # Load the config.ini file for APP settings (start_maximized, screen_width, screen_height, etc.)
         if not os.path.exists(self.config_file):
             self.create_default_config()
 
         self.load_config()
+
+        # Setup logging after loading config
+        if self.is_module_enabled('logging'):
+            log_file = self.get_logging_setting('log_file', 'logs/app.log')
+            max_bytes = int(self.get_logging_setting('max_bytes', 5 * 1024 * 1024))  # 5MB by default
+            backup_count = int(self.get_logging_setting('backup_count', 3))
+            logging_level = self.get_logging_setting('level', 'INFO').upper()
+            
+            # Setup logging with the loaded configuration
+            setup_logging(log_file=log_file, max_bytes=max_bytes, backup_count=backup_count)
 
     def load_config(self):
         """
@@ -61,6 +72,12 @@ class Config:
                 'start_maximized': 'True',
                 'screen_width': '800',
                 'screen_height': '600'
+            }
+            self.config['LOGGING'] = {
+                'log_file': 'logs/app.log',
+                'max_bytes': '5242880',  # 5MB
+                'backup_count': '3',
+                'level': 'INFO'
             }
             with open(self.config_file, 'w') as configfile:
                 self.config.write(configfile)
@@ -86,6 +103,16 @@ class Config:
         :return: The value of the configuration option or fallback.
         """
         return self.get('APP', option, fallback=fallback)
+
+    def get_logging_setting(self, option, fallback=None):
+        """
+        Get a logging setting from the LOGGING section in config.ini.
+        
+        :param option: The logging option (e.g., log_file, max_bytes, level).
+        :param fallback: Fallback value if the option is not found.
+        :return: The value of the logging configuration option or fallback.
+        """
+        return self.get('LOGGING', option, fallback=fallback)
 
     def is_module_enabled(self, module):
         """

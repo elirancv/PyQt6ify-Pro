@@ -38,12 +38,21 @@
       - **Multiple log levels**: Supports DEBUG, INFO, WARNING, ERROR, and CRITICAL levels.
       - Output to both a file (`logs/app.log`) and the console, aiding in debugging and maintenance.
   - **Themes**:
-    - PyQt6ify Pro comes with built-in theme management, allowing you to easily switch between different color schemes:
-        - **Dark Theme**: A dark-colored interface designed to reduce eye strain, featuring a deep gray background and bright text.
-        - **Modern Light Theme**: A clean and bright theme with light gray and white tones for a modern look.
-        - **Blue Ocean Theme**: A cool, ocean-inspired theme with soft blue tones and contrasting dark text.
+    - PyQt6ify Pro offers an extensive collection of themes, allowing you to easily switch between different color schemes to suit your preferences:
+        - **Autumn Ember**: A warm, rustic theme with deep reds, golden highlights, and dark undertones.
+        - **Cool Breeze**: A refreshing theme with light blues and calming turquoise accents.
+        - **Coral Wave**: A vibrant, modern theme combining dark blues and coral pink highlights.
+        - **Crimson Night**: A bold theme with dark purples and crimson accents for a dramatic effect.
+        - **Cyber Steel**: A sleek, industrial theme featuring steel grays and electric blue highlights.
+        - **Deep Blue Calm**: A soothing theme with cool blues and dark contrasting elements.
+        - **Midnight Rust**: A moody theme with dark blues and rusty red highlights for a vintage feel.
+        - **Rustic Charm**: A rich theme with earthy browns and creams, evoking a natural and rustic ambiance.
+        - **Dark Theme**: A classic dark interface with deep grays, ideal for reducing eye strain.
+        - **Modern Light Theme**: A clean, bright theme with soft gray and white tones for a minimalist aesthetic.
+        - **Blue Ocean Theme**: A tranquil, ocean-inspired theme with cool blue tones and dark text for contrast.
 
-    You can switch themes through the settings menu or apply them programmatically using the configuration provided in the `resources/styles` folder.
+    You can switch between these themes via the settings menu or apply them programmatically using the configuration files located in the `resources/styles` folder.
+
 
 
 

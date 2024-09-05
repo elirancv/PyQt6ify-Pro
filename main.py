@@ -7,6 +7,7 @@ from PyQt6.QtGui import QIcon
 from config.app_config import Config
 from config.settings_dialog import SettingsDialog
 from modules import error_handling, database, menu, status_bar, toolbar, about
+from modules.themes import apply_theme
 
 # Ensure the logs directory exists before configuring logging
 os.makedirs('logs', exist_ok=True)
@@ -32,6 +33,50 @@ def format_elapsed_time(elapsed_time):
     minutes, seconds = divmod(rem, 60)
     return f"{int(hours)}h {int(minutes)}m {seconds:.2f}s"
 
+
+def setup_logging_if_enabled(config):
+    """
+    Setup logging if the logging module is enabled in the configuration.
+
+    :param config: The application configuration object.
+    """
+    if config.is_module_enabled('logging'):
+        error_handling.setup_logging()
+        logging.info("Logging initialized.")
+
+
+def apply_dark_mode_if_enabled(app, config):
+    """
+    Apply dark mode based on the configuration settings.
+
+    :param app: The QApplication instance.
+    :param config: The configuration object.
+    """
+    dark_mode = config.get_app_setting('dark_mode', 'False') == 'True'
+    if dark_mode:
+        logging.info("Applying dark mode.")
+        apply_theme(app, 'resources/styles/dark_theme.json', show_message=False)
+    else:
+        logging.info("Applying light mode.")
+        apply_theme(app, 'resources/styles/light_theme.json', show_message=False)
+
+
+def initialize_database_if_enabled(config):
+    """
+    Initialize the database if it is enabled in the configuration.
+
+    :param config: The application configuration object.
+    """
+    if config.is_module_enabled('database'):
+        logging.info("Initializing database.")
+        try:
+            database.main()
+            logging.info("Database initialized successfully.")
+        except Exception as db_error:
+            logging.error(f"Failed to initialize database: {db_error}", exc_info=True)
+            raise
+
+
 class MainWindow(QMainWindow):
     """
     MainWindow class responsible for setting up the main UI window 
@@ -50,9 +95,9 @@ class MainWindow(QMainWindow):
         such as title, icon, window size, and optional features.
         """
         start_time = time.time()
-        logging.info("Initializing UI")
+        logging.info("Initializing UI.")
 
-        # Set window title and icon from the configuration (directly from app_config.py)
+        # Set window title and icon from the configuration
         self.setWindowTitle(self.config.get_about_info('name'))  # Fetch from app_config.py
         self.setWindowIcon(QIcon(self.config.get_about_info('icon')))  # Fetch from app_config.py
 
@@ -66,14 +111,17 @@ class MainWindow(QMainWindow):
             logging.info("Maximizing window as per configuration.")
             self.showMaximized()  # Maximize the window if the setting is True
         else:
-            logging.info("Setting window size to %sx%s.", screen_width, screen_height)
+            logging.info(f"Setting window size to {screen_width}x{screen_height}.")
             self.setGeometry(100, 100, screen_width, screen_height)
             self.show()  # Show window in defined size if maximization is False
 
-        # Initialize the menu, status bar, and toolbar based on configuration (controlled by app_config.py)
+        # Apply dark mode if enabled in settings
+        apply_dark_mode_if_enabled(self.app, self.config)
+
+        # Initialize the menu, status bar, and toolbar based on configuration
         self.initialize_components()
 
-        self.statusBar().showMessage("Status bar is visible")
+        self.statusBar().showMessage("Status bar is visible.")
         end_time = time.time()
         logging.info(f"UI initialized in {format_elapsed_time(end_time - start_time)}")
 
@@ -84,18 +132,18 @@ class MainWindow(QMainWindow):
         """
         try:
             if self.config.is_module_enabled('menu'):
-                logging.info("Creating menu")
+                logging.info("Creating menu.")
                 menu.create_menu(self, self.config)
 
             if self.config.is_module_enabled('status_bar'):
-                logging.info("Creating status bar")
+                logging.info("Creating status bar.")
                 status_bar.create_status_bar(self)
 
             if self.config.is_module_enabled('toolbar'):
-                logging.info("Creating toolbar")
+                logging.info("Creating toolbar.")
                 toolbar.create_toolbar(self)
         except AttributeError as e:
-            logging.error(f"Error initializing components: {e}")
+            logging.error(f"Error initializing components: {e}", exc_info=True)
             raise
 
 
@@ -109,21 +157,19 @@ def main():
     try:
         # Load configuration
         config = Config()
+        logging.info("Configuration loaded successfully.")
 
         # Setup logging based on configuration
-        if config.is_module_enabled('logging'):
-            error_handling.setup_logging()
+        setup_logging_if_enabled(config)
 
-        logging.info("Starting application")
+        logging.info("Starting application.")
 
         # Initialize QApplication and MainWindow
         app = QApplication(sys.argv)
         window = MainWindow(config, app)
 
         # Initialize the database if enabled
-        if config.is_module_enabled('database'):
-            logging.info("Initializing database")
-            database.main()
+        initialize_database_if_enabled(config)
 
         # Execute the application
         app.exec()
@@ -135,7 +181,9 @@ def main():
         # Log the total application runtime
         elapsed_time = time.time() - start_time
         logging.info(f"Application ran for {format_elapsed_time(elapsed_time)}")
-        logging.info("Closing application")
+        logging.info("Closing application.")
+        sys.exit(0)
+
 
 if __name__ == '__main__':
     main()

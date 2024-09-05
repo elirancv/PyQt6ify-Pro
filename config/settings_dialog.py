@@ -1,11 +1,11 @@
 from PyQt6.QtWidgets import (QDialog, QLabel, QLineEdit, QCheckBox, QPushButton, 
                              QVBoxLayout, QHBoxLayout, QFormLayout, QTabWidget, 
                              QComboBox, QWidget, QSpacerItem, QSizePolicy, QFileDialog)
-from PyQt6.QtGui import QPixmap, QIcon
+from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
 import config.settings as app_settings
 import logging
-from PIL import Image  # Use Pillow to check image dimensions
+from PIL import Image  # Ensure Pillow is installed: pip install pillow
 
 class SettingsDialog(QDialog):
     def __init__(self, parent=None):
@@ -34,18 +34,17 @@ class SettingsDialog(QDialog):
         self.setLayout(self.layout)
 
         # Set initial window size and restrict resizing
-        self.setMinimumSize(500, 500)  # Minimum window size to fit content better
-        self.adjustSize()  # Dynamically resize the window to fit the content
+        self.setMinimumSize(500, 500)
+        self.adjustSize()
 
     def add_about_tab(self, tab_title, settings_dict):
         """ Add a tab for 'About Info' section, including an icon that can be changed. """
         tab = QWidget()
         layout = QFormLayout()
 
-        # Display fields for app name, version, author, etc.
         for key, value in settings_dict.items():
             if key == 'icon':
-                self.icon_label = QLabel(alignment=Qt.AlignmentFlag.AlignCenter)  # Center the icon
+                self.icon_label = QLabel(alignment=Qt.AlignmentFlag.AlignCenter)
                 pixmap = QPixmap(value).scaled(256, 256, Qt.AspectRatioMode.KeepAspectRatio)
                 self.icon_label.setPixmap(pixmap)
                 self.icon_label.setFixedSize(256, 256)
@@ -53,7 +52,6 @@ class SettingsDialog(QDialog):
                 # Enable double-click to change the icon
                 self.icon_label.mouseDoubleClickEvent = self.change_icon
 
-                # Add some padding between the fields and the icon
                 layout.addRow(QLabel("App Icon"), self.icon_label)
             else:
                 field = QLineEdit(str(value))
@@ -111,24 +109,25 @@ class SettingsDialog(QDialog):
             layout.addWidget(checkbox)
 
         # Spacer at the bottom for cleaner layout
-        layout.addSpacerItem(QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding))  
+        layout.addSpacerItem(QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding))
         tab.setLayout(layout)
         self.tabs.addTab(tab, tab_title)
 
     def add_app_defaults_tab(self, tab_title, settings_dict):
-        """ Add a tab for 'App Defaults' section with fields. """
+        """ Add a tab for 'App Defaults' section with fields, including Dark Mode toggle. """
         tab = QWidget()
         layout = QFormLayout()
 
         # Adding window settings fields
         for key, value in settings_dict.items():
             if key == "start_maximized":
-                # Adding a dropdown for start_maximized
                 field = QComboBox()
                 field.addItems(["True", "False"])
                 field.setCurrentText("True" if value else "False")
+            elif key == "dark_mode":
+                field = QCheckBox("Enable Dark Mode")
+                field.setChecked(value == "True")
             elif isinstance(value, bool):
-                # Other boolean options will remain checkboxes
                 field = QCheckBox()
                 field.setChecked(value)
             else:
@@ -145,17 +144,14 @@ class SettingsDialog(QDialog):
         tab = QWidget()
         layout = QFormLayout()
 
-        # Adding logging settings fields
         for key, value in logging_dict.items():
             if key == "level":
-                # Special case for logging levels
                 field = QComboBox()
                 field.addItems(["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"])
-                field.setCurrentText(str(value))  # Set current level
+                field.setCurrentText(str(value))
             elif isinstance(value, bool):
-                field = QComboBox()
-                field.addItems(["True", "False"])
-                field.setCurrentText("True" if value else "False")
+                field = QCheckBox()
+                field.setChecked(value)
             else:
                 field = QLineEdit(str(value))
 
@@ -173,7 +169,6 @@ class SettingsDialog(QDialog):
         self.save_button.clicked.connect(self.save_settings)
         self.cancel_button.clicked.connect(self.close)
 
-        # Spacer for pushing buttons to the right
         buttons_layout.addSpacerItem(QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
         buttons_layout.addWidget(self.save_button)
         buttons_layout.addWidget(self.cancel_button)
@@ -183,35 +178,32 @@ class SettingsDialog(QDialog):
     def save_settings(self):
         """ Save the modified settings back to the settings.py file. """
         try:
-            # Update about_info
             for key in app_settings.about_info:
-                if key != 'icon':  # Icon is already updated during selection
+                if key != 'icon':
                     app_settings.about_info[key] = self.fields[("About Info", key)].text().strip()
 
-            # Update modules
             for key in app_settings.modules:
                 app_settings.modules[key] = self.fields[("Modules", key)].isChecked()
 
-            # Update app_defaults
             for key in app_settings.app_defaults:
                 field = self.fields[("App Defaults", key)]
-                if isinstance(field, QComboBox):
-                    app_settings.app_defaults[key] = field.currentText() == "True" if key != 'start_maximized' else field.currentText()
+                if key == "dark_mode":
+                    app_settings.app_defaults[key] = "True" if field.isChecked() else "False"
+                elif isinstance(field, QComboBox):
+                    app_settings.app_defaults[key] = field.currentText()
                 else:
                     app_settings.app_defaults[key] = field.text().strip()
 
-            # Update logging_defaults
             for key in app_settings.logging_defaults:
                 field = self.fields[("Logging Settings", key)]
                 if isinstance(field, QComboBox):
                     if key == "level":
-                        app_settings.logging_defaults[key] = field.currentText()  # Handle logging level
+                        app_settings.logging_defaults[key] = field.currentText()
                     else:
                         app_settings.logging_defaults[key] = field.currentText() == "True"
                 else:
                     app_settings.logging_defaults[key] = field.text().strip()
 
-            # Save to file
             self.save_to_file()
             logging.info("Settings successfully saved.")
             self.close()

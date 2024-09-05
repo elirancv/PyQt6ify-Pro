@@ -91,7 +91,7 @@ def create_menu(window, config):
         theme_files = [f for f in os.listdir(styles_path) if f.endswith('.json')]
 
         # Track the currently selected theme (optional: load it from config or default)
-        selected_theme = None
+        selected_theme = config.get_app_setting("theme", None)
         
         # Add each theme to the theme_menu with an icon
         for theme_file in theme_files:
@@ -102,8 +102,11 @@ def create_menu(window, config):
             # Add the theme_action to the theme_group
             theme_group.addAction(theme_action)
             
-            # Connect each theme action to apply the selected theme, fixing lambda scope issue
-            theme_action.triggered.connect(lambda checked, t=os.path.join(styles_path, theme_file), name=theme_name, action=theme_action: apply_selected_theme(window, t, action, name))
+            # Connect each theme action to apply the selected theme
+            theme_action.triggered.connect(
+                lambda checked, t=os.path.join(styles_path, theme_file), name=theme_name, action=theme_action:
+                apply_selected_theme(window, t, action, name)
+            )
             
             # Add the action to the menu
             theme_menu.addAction(theme_action)
@@ -143,7 +146,7 @@ def create_menu(window, config):
 def apply_selected_theme(window, theme_file, theme_action, theme_name):
     """
     Applies the selected theme and updates the checkmark in the menu.
-
+    
     :param window: The main application window.
     :param theme_file: Path to the selected theme JSON file.
     :param theme_action: The QAction representing the selected theme.
@@ -152,16 +155,18 @@ def apply_selected_theme(window, theme_file, theme_action, theme_name):
     try:
         # Apply the selected theme
         themes.apply_theme(window.app, theme_file)
-        
+
         # Mark this action as selected (the QActionGroup ensures only one is selected)
         theme_action.setChecked(True)
-        
+
         # Update status bar to indicate the theme has been applied
         update_status_bar(window.statusBar(), f"Theme applied: {theme_name}")
         logging.info(f"Theme applied: {theme_name}")
 
     except Exception as e:
         logging.error(f"Failed to apply theme: {e}", exc_info=True)
+
+
 
 def connect_menu_actions(action, message, window):
     """

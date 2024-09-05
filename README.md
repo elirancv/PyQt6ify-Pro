@@ -32,7 +32,11 @@
   - **Database**:
     - Integrated SQLite database for persistent data storage and management.
   - **Logging**:
-    - Comprehensive logging system with output to both a file (`logs/app.log`) and the console, aiding in debugging and maintenance.
+    - Enhanced logging system with:
+      - **Log rotation**: Automatically manages log file sizes and backups.
+      - **Dynamic logging configuration**: Control log file location, size, backup count, and logging level via `config.ini`.
+      - **Multiple log levels**: Supports DEBUG, INFO, WARNING, ERROR, and CRITICAL levels.
+      - Output to both a file (`logs/app.log`) and the console, aiding in debugging and maintenance.
   - **Themes**:
     - PyQt6ify Pro comes with built-in theme management, allowing you to easily switch between different color schemes:
         - **Dark Theme**: A dark-colored interface designed to reduce eye strain, featuring a deep gray background and bright text.
@@ -40,6 +44,7 @@
         - **Blue Ocean Theme**: A cool, ocean-inspired theme with soft blue tones and contrasting dark text.
 
     You can switch themes through the settings menu or apply them programmatically using the configuration provided in the `resources/styles` folder.
+
 
 ## Getting Started
 
@@ -62,10 +67,10 @@
 ## Configuration
 **Application Settings**:
 Manage app details `(name, version, author, and website)` in `app_config.py`:
-- name: Default is `"MyApp"`.
-- version: Default is `"1.0"`.
-- author: `"Your name"`.
-- website: `"Your website URL"`.
+- `name`: Default is `"MyApp"`.
+- `version`: Default is `"1.0"`.
+- `author`: `"Your name"`.
+- `website`: `"Your website URL"`.
 
 **Window Settings** (in `config.ini`):
 - `start_maximized`: Start the app maximized `(True/False)`.
@@ -74,6 +79,14 @@ Manage app details `(name, version, author, and website)` in `app_config.py`:
 
 **Module Control** (in `app_config.py`):
 - Enable or disable specific modules `(logging, database, menu, toolbar, status bar)` as needed for **your application**.
+
+## Logging Configuration
+**Logging Settings** (in `config.ini`):
+- `log_file`: Path to the log file (`logs/app.log` by default).
+- `max_bytes`: Maximum size of the log file before rotation (default: `5MB`).
+- `backup_count`: Number of backup log files to keep (default: `3`).
+- `level`: Logging level (default: `INFO`, supports `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`).
+
 
 ## Contributing
 We welcome contributions to PyQt6ify Pro! Whether you're fixing bugs, adding new features, or improving documentation, your help is appreciated. To contribute:

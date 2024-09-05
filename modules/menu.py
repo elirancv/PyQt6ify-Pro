@@ -58,7 +58,7 @@ def create_menu(window, config):
         cut_action = QAction(QIcon(f'{icons_path}/cut.png'), 'Cut', window)
         copy_action = QAction(QIcon(f'{icons_path}/copy.png'), 'Copy', window)
         paste_action = QAction(QIcon(f'{icons_path}/paste.png'), 'Paste', window)
-        select_all_action = QAction('Select All', window)
+        select_all_action = QAction(QIcon(f'{icons_path}/select-all.png'), 'Select All', window)
 
         edit_menu.addAction(undo_action)
         edit_menu.addAction(redo_action)
